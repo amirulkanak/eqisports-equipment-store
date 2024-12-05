@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,6 +9,10 @@
 }
 /* ------------------------- */
 
+.active {
+  @apply text-sky-800 dark:text-sky-500 underline font-bold;
+}
+
 @layer components {
   .max-width-wrapper {
     @apply max-w-[82.5rem] w-full mx-auto pc:px-0 px-4;
@@ -16,6 +21,6 @@
 
 @layer utilities {
   body {
-    @apply font-lato;
+    @apply font-manrope bg-clr-light text-clr-dark font-medium dark:bg-clr-dark dark:text-clr-light;
   }
 }

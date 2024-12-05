@@ -10,12 +10,14 @@ module.exports = {
       },
       // Custom font family
       fontFamily: {
-        lato: ['"Lato"', 'sans-serif'],
+        manrope: ['"Manrope"', 'sans-serif'],
       },
       // Custom colors
       colors: {
-        'clr-woodsmoke': '#131313',
-        'clr-paradiso': '#0E7A81',
+        'clr-light': '#e8e8e8',
+        'clr-dark2': '#212121',
+        'clr-dark': '#1d2330',
+        'clr-darker': '#13161f',
       },
     },
   },

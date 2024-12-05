@@ -1,5 +1,72 @@
+import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { LiaAlignLeftSolid } from 'react-icons/lia';
+import useAuth from '../hooks/useAuth';
+import { Tooltip } from 'react-tooltip';
+import { BtnNavLink, Button } from './ui/Button';
+
 const Navbar = () => {
-  return <nav>Navbar Section</nav>;
+  const [open, setOpen] = useState(false);
+  // const { user, logOut } = useAuth();
+  const user = true;
+
+  return (
+    <nav className="dark:bg-clr-darker py-7 dark:border-b dark:border-b-sky-600/30">
+      <section className="max-width-wrapper relative flex items-center justify-between py-5 lg:py-0">
+        {/* Logo */}
+        <Link to={'/'}>
+          <h2 className="text-3xl font-bold">
+            <span className="text-sky-700 dark:text-sky-500">Equi</span>
+            Sports
+          </h2>
+        </Link>
+
+        <div>
+          <button
+            onClick={() => setOpen(!open)}
+            className={`absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] lg:hidden border border-sky-600/30 shadow-lg`}>
+            <LiaAlignLeftSolid className="text-4xl" />
+          </button>
+
+          <div
+            className={`absolute right-4 z-20 top-full w-full max-w-[250px] rounded-lg bg-clr-darker/90 border border-sky-600/30 lg:border-none lg:bg-transparent px-6 py-5 lg:px-0 lg:py-0 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none ${
+              !open && 'hidden'
+            } `}>
+            {/* Links */}
+            <ul className="text-base font-medium flex flex-col lg:flex-row items-center justify-between gap-4">
+              <NavLink to={'/'} className="">
+                Home
+              </NavLink>
+              <NavLink to={'/404'}>404</NavLink>
+              <NavLink to={'/all-equipment'}>All Sports Equipment</NavLink>
+              <NavLink to={'/add-equipment'}>Add Equipment</NavLink>
+              <NavLink to={'/my-equipment'}>My Equipment List</NavLink>
+
+              {/* user Pic */}
+
+              {user && (
+                <div className="has-tooltip h-[42px] w-[42px] rounded-full border border-eminence-500">
+                  <img
+                    src={user.photoURL}
+                    alt={user.displayName}
+                    className="h-full w-full rounded-full object-cover object-center"
+                    data-tooltip-id="user-name"
+                    data-tooltip-content="kanak"
+                  />
+                  <Tooltip id="user-name" />
+                </div>
+              )}
+              {/* add onClick={logOut} */}
+              {user && <Button>Logout</Button>}
+
+              {!user && <BtnNavLink to={'/auth/login'}>Register</BtnNavLink>}
+              {!user && <BtnNavLink to={'/auth/register'}>Login</BtnNavLink>}
+            </ul>
+          </div>
+        </div>
+      </section>
+    </nav>
+  );
 };
 
 export default Navbar;
