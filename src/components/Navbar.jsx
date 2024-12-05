@@ -10,15 +10,15 @@ import { Tooltip } from 'react-tooltip';
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
-  // const { user, logOut } = useAuth();
-  const user = true;
+  const { user, logOut } = useAuth();
+  // const user = true;
 
   return (
     <nav className="dark:bg-clr-darker py-7 dark:border-b dark:border-b-sky-600/30">
       <section className="max-width-wrapper relative flex items-center justify-between py-5 lg:py-0">
         {/* Logo */}
         <Link to={'/'}>
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-3xl font-bold font-playwrite">
             <span className="text-sky-700 dark:text-sky-500">Equi</span>
             Sports
           </h2>
@@ -54,16 +54,16 @@ const Navbar = () => {
                     alt={user.displayName}
                     className="h-full w-full rounded-full object-cover object-center"
                     data-tooltip-id="user-name"
-                    data-tooltip-content="kanak"
+                    data-tooltip-content={user.displayName}
                   />
                   <Tooltip id="user-name" />
                 </div>
               )}
               {/* add onClick={logOut} */}
-              {user && <Button>Logout</Button>}
+              {user && <Button onClick={logOut}>Logout</Button>}
 
-              {!user && <BtnNavLink to={'/auth/login'}>Register</BtnNavLink>}
-              {!user && <BtnNavLink to={'/auth/register'}>Login</BtnNavLink>}
+              {!user && <BtnNavLink to={'/auth/register'}>Register</BtnNavLink>}
+              {!user && <BtnNavLink to={'/auth/login'}>Login</BtnNavLink>}
               <button
                 onClick={toggleTheme}
                 className="p-2 rounded-full hover:bg-sky-600/30"

@@ -12,6 +12,7 @@ module.exports = {
       // Custom font family
       fontFamily: {
         manrope: ['"Manrope"', 'sans-serif'],
+        playwrite: ['"Playwrite HR Lijeva"', 'cursive'],
       },
       // Custom colors
       colors: {

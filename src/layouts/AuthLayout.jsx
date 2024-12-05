@@ -5,7 +5,7 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 
-const MainLayout = () => {
+const AuthLayout = () => {
   const location = useLocation();
   useEffect(() => {
     Aos.init({ duration: 1000, easing: 'ease-in-out' });
@@ -14,18 +14,13 @@ const MainLayout = () => {
   useEffect(() => {
     Aos.refresh();
   }, [location]);
-
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Navbar */}
       <Navbar />
-      {/* Dynamic children component from router */}
       <Outlet />
-
-      {/* Footer */}
       <Footer />
     </div>
   );
 };
 
-export default MainLayout;
+export default AuthLayout;
