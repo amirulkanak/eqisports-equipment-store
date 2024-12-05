@@ -32,11 +32,11 @@ const Navbar = () => {
           </button>
 
           <div
-            className={`absolute right-4 z-20 top-full w-full max-w-[250px] rounded-lg bg-clr-darker/90 border border-sky-600/30 xl:border-none xl:bg-transparent px-6 py-5 xl:px-0 xl:py-0 shadow xl:static xl:block xl:w-full xl:max-w-full xl:shadow-none ${
+            className={`absolute right-4 z-20 top-full w-full max-w-[250px] rounded-lg bg-sky-500 dark:bg-clr-darker/90 border border-sky-600/30 xl:border-none xl:bg-transparent px-6 py-5 xl:px-0 xl:py-0 shadow xl:static xl:block xl:w-full xl:max-w-full xl:shadow-none ${
               !open && 'hidden'
             } `}>
             {/* Links */}
-            <ul className="text-base font-medium flex flex-col xl:flex-row items-center justify-between gap-4">
+            <ul className="text-base text-clr-light font-medium flex flex-col xl:flex-row items-center justify-between gap-4">
               <NavLink to={'/'} className="">
                 Home
               </NavLink>
