@@ -9,6 +9,7 @@ import AuthLayout from '../layouts/AuthLayout';
 import ForgetPasswordPage from '../pages/ForgetPasswordPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
+import PrivateRoute from './PrivateRoute';
 
 const routes = createBrowserRouter([
   {
@@ -26,11 +27,19 @@ const routes = createBrowserRouter([
       },
       {
         path: 'add-equipment',
-        element: <AddEquipment />,
+        element: (
+          <PrivateRoute>
+            <AddEquipment />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'my-equipment',
-        element: <MyEquipment />,
+        element: (
+          <PrivateRoute>
+            <MyEquipment />
+          </PrivateRoute>
+        ),
       },
     ],
   },
