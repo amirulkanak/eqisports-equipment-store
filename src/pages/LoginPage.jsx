@@ -5,25 +5,29 @@ import { FcGoogle } from 'react-icons/fc';
 import InputBox from './../components/ui/InputBox';
 import useAuth from './../hooks/useAuth';
 import notify from '../utils/notify';
+import LoadingSpinner from './../components/LoadingSpinner';
 
 const LoginPage = () => {
   document.title = 'Login | EquiSports';
-  window.scrollTo(0, 0);
+  const [loading, setLoading] = useState(false);
+  const [gloading, setGLoading] = useState(false);
   const [error, setError] = useState('');
-  const { loginWithGooglePopup, setUser, logIn, forgotEmail, setForgotEmail } =
-    useAuth();
+  const { loginWithGooglePopup, setUser, logIn, setForgotEmail } = useAuth();
   const { state } = useLocation();
   const navigate = useNavigate();
 
   // Login with Google
   const handleLoginWithGoogle = () => {
+    setGLoading(true);
     loginWithGooglePopup()
       .then((result) => {
         setUser(result.user);
+        setLoading(false);
         notify.success(`Welcome ${result.user.displayName}`);
         navigate(state ? state : '/');
       })
       .catch((error) => {
+        setGLoading(false);
         setError(
           'Failed to login with Google. Please try again. ' + error.message
         );
@@ -33,16 +37,20 @@ const LoginPage = () => {
   // Form submit handler
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     setError('');
     const formData = Object.fromEntries(new FormData(event.target));
 
     if (!validateEmail(formData.email)) {
       setError('Invalid email. Please check email address.');
+      setLoading(false);
       return;
     }
 
     if (!formData.password) {
       setError('Password is required');
+      setLoading(false);
+      return;
     }
 
     setForgotEmail(formData.email);
@@ -50,10 +58,12 @@ const LoginPage = () => {
     logIn(formData.email, formData.password)
       .then((result) => {
         setUser(result.user);
+        setLoading(false);
         notify.success(`Welcome ${result.user.displayName}`);
         navigate(state ? state : '/');
       })
       .catch((error) => {
+        setLoading(false);
         notify.error('Error');
         setError(
           'Failed to login with Google. Please try again. ' + error.message
@@ -85,11 +95,19 @@ const LoginPage = () => {
                 </span>
 
                 <div className="mb-10">
-                  <input
-                    type="submit"
-                    value="Login"
-                    className="w-full cursor-pointer rounded-md px-5 py-3 text-base border-2 border-sky-600/50 shadow-lg bg-sky-400/30 dark:bg-transparent dark:hover:bg-sky-600/30 hover:bg-sky-500 text-sky-800 dark:text-sky-500 hover:text-white dark:hover:text-clr-light duration-300"
-                  />
+                  {loading ? (
+                    <button
+                      disabled={loading}
+                      className="flex items-center justify-center w-full rounded-md px-5 py-3 text-base border-2 border-sky-600/50 shadow-lg bg-sky-400/30 dark:bg-transparent dark:hover:bg-sky-600/30 hover:bg-sky-500 text-sky-800 dark:text-sky-500 hover:text-white dark:hover:text-clr-light duration-300">
+                      <LoadingSpinner size={1} />
+                    </button>
+                  ) : (
+                    <input
+                      type="submit"
+                      value="Login"
+                      className="w-full cursor-pointer rounded-md px-5 py-3 text-base border-2 border-sky-600/50 shadow-lg bg-sky-400/30 dark:bg-transparent dark:hover:bg-sky-600/30 hover:bg-sky-500 text-sky-800 dark:text-sky-500 hover:text-white dark:hover:text-clr-light duration-300"
+                    />
+                  )}
                 </div>
               </form>
 
@@ -115,12 +133,19 @@ const LoginPage = () => {
 
               <div className="my-6 text-base h-[1px] bg-eminence-600/30"></div>
 
-              <div
+              <button
                 onClick={handleLoginWithGoogle}
-                className="w-full cursor-pointer rounded-md border-2 border-sky-600/50 hover:bg-sky-600/30 px-5 py-3 text-base font-medium text-blue-600/80 dark:text-clr-light/70">
-                <FcGoogle className="text-2xl inline mr-2" />
-                Login with Google
-              </div>
+                disabled={gloading}
+                className="w-full flex items-center justify-center cursor-pointer rounded-md border-2 border-sky-600/50 hover:bg-sky-600/30 px-5 py-3 text-base font-medium text-blue-600/80 dark:text-clr-light/70">
+                {gloading ? (
+                  <LoadingSpinner size={1} />
+                ) : (
+                  <span>
+                    <FcGoogle className="text-2xl inline mr-2" />
+                    Login with Google
+                  </span>
+                )}
+              </button>
 
               <div>
                 <span className="absolute right-0 top-0">

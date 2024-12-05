@@ -6,11 +6,13 @@ import PasswordInput from './../components/ui/PasswordInput';
 import InputBox from './../components/ui/InputBox';
 import useAuth from './../hooks/useAuth';
 import notify from '../utils/notify';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const RegisterPage = () => {
   document.title = 'Sign Up | EquiSports';
-  window.scrollTo(0, 0);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [gloading, setGLoading] = useState(false);
   const navigate = useNavigate();
   const { setUser, signUp, updateUserProfile, loginWithGooglePopup } =
     useAuth();
@@ -18,20 +20,24 @@ const RegisterPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setError('');
+    setLoading(true);
     const formData = Object.fromEntries(new FormData(event.target));
 
     if (!formData.fullName) {
       setError('Full name is required.');
+      setLoading(false);
       return;
     }
 
     if (!formData.photoUrl) {
       setError('Photo url is required.');
+      setLoading(false);
       return;
     }
 
     if (!validateEmail(formData.email)) {
       setError('Invalid email. Please check email address.');
+      setLoading(false);
       return;
     }
 
@@ -39,6 +45,7 @@ const RegisterPage = () => {
       setError(
         'Password must includes 6 characters, an uppercase and a lowercase letters.'
       );
+      setLoading(false);
       return;
     }
 
@@ -48,6 +55,7 @@ const RegisterPage = () => {
         setUser(result.user);
         // update user profile
         updateUserProfile(formData.fullName, formData.photoUrl);
+        setLoading(false);
         notify.success(`Sign up Successful`);
         // clear input fields after submit
         event.target.reset();
@@ -55,6 +63,7 @@ const RegisterPage = () => {
       })
       .catch((error) => {
         notify.error('Error');
+        setLoading(false);
         setError(
           'Failed to login with Google. Please try again. ' + error.message
         );
@@ -63,13 +72,16 @@ const RegisterPage = () => {
 
   // Login with Google
   const handleLoginWithGoogle = () => {
+    setGLoading(true);
     loginWithGooglePopup()
       .then((result) => {
         setUser(result.user);
+        setGLoading(false);
         notify.success(`Welcome ${result.user.displayName}`);
         navigate('/');
       })
       .catch((error) => {
+        setGLoading(false);
         setError(
           'Failed to login with Google. Please try again. ' + error.message
         );
@@ -105,11 +117,19 @@ const RegisterPage = () => {
                 </span>
 
                 <div className="mb-10">
-                  <input
-                    type="submit"
-                    value="Sign Up"
-                    className="w-full cursor-pointer rounded-md px-5 py-3 text-base border-2 border-sky-600/50 shadow-lg bg-sky-400/30 dark:bg-transparent dark:hover:bg-sky-600/30 hover:bg-sky-500 text-sky-800 dark:text-sky-500 hover:text-white dark:hover:text-clr-light duration-300 "
-                  />
+                  {loading ? (
+                    <button
+                      disabled={loading}
+                      className="flex items-center justify-center w-full rounded-md px-5 py-3 text-base border-2 border-sky-600/50 shadow-lg bg-sky-400/30 dark:bg-transparent dark:hover:bg-sky-600/30 hover:bg-sky-500 text-sky-800 dark:text-sky-500 hover:text-white dark:hover:text-clr-light duration-300">
+                      <LoadingSpinner size={1} />
+                    </button>
+                  ) : (
+                    <input
+                      type="submit"
+                      value="Sign Up"
+                      className="w-full cursor-pointer rounded-md px-5 py-3 text-base border-2 border-sky-600/50 shadow-lg bg-sky-400/30 dark:bg-transparent dark:hover:bg-sky-600/30 hover:bg-sky-500 text-sky-800 dark:text-sky-500 hover:text-white dark:hover:text-clr-light duration-300"
+                    />
+                  )}
                 </div>
               </form>
 
@@ -126,12 +146,19 @@ const RegisterPage = () => {
 
               <div className="my-6 text-base h-[1px] bg-sky-600/30"></div>
 
-              <div
+              <button
                 onClick={handleLoginWithGoogle}
-                className="w-full cursor-pointer rounded-md border-2 border-sky-600/50 hover:bg-sky-600/30 px-5 py-3 text-base font-medium text-blue-600/80 dark:text-clr-light/70">
-                <FcGoogle className="text-2xl inline mr-2" />
-                Sign up with Google
-              </div>
+                disabled={gloading}
+                className="w-full flex items-center justify-center cursor-pointer rounded-md border-2 border-sky-600/50 hover:bg-sky-600/30 px-5 py-3 text-base font-medium text-blue-600/80 dark:text-clr-light/70">
+                {gloading ? (
+                  <LoadingSpinner size={1} />
+                ) : (
+                  <span>
+                    <FcGoogle className="text-2xl inline mr-2" />
+                    Login with Google
+                  </span>
+                )}
+              </button>
 
               <div>
                 <span className="absolute right-0 top-0">

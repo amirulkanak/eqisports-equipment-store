@@ -3,10 +3,12 @@ import { validateEmail } from '../utils/validator';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import notify from '../utils/notify';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const ForgetPasswordPage = () => {
   document.title = 'Forget Password | EquiSports';
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const { sendPasswordResetEmailToUser, forgotEmail, setForgotEmail } =
     useAuth();
   const navigate = useNavigate();
@@ -14,19 +16,23 @@ const ForgetPasswordPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setError('');
+    setLoading(true);
     const formData = Object.fromEntries(new FormData(event.target));
 
     if (!validateEmail(formData.email)) {
       setError('Invalid email. Please check email address.');
+      setLoading(false);
       return;
     }
     sendPasswordResetEmailToUser(formData.email)
       .then((result) => {
         notify.success(`Check your email for password reset link.`);
         setForgotEmail('');
+        setLoading(false);
         navigate('/auth/login');
       })
       .catch((error) => {
+        setLoading(false);
         setError(
           'Failed to login with Google. Please try again.' + error.message
         );
@@ -63,11 +69,19 @@ const ForgetPasswordPage = () => {
                 </span>
 
                 <div className="mb-10">
-                  <input
-                    type="submit"
-                    value="Reset Password"
-                    className="w-full cursor-pointer rounded-md px-5 py-3 text-base border-2 border-sky-600/50 shadow-lg bg-sky-400/30 dark:bg-transparent dark:hover:bg-sky-600/30 hover:bg-sky-500 text-sky-800 dark:text-sky-500 hover:text-white dark:hover:text-clr-light duration-300"
-                  />
+                  {loading ? (
+                    <button
+                      disabled={loading}
+                      className="flex items-center justify-center w-full rounded-md px-5 py-3 text-base border-2 border-sky-600/50 shadow-lg bg-sky-400/30 dark:bg-transparent dark:hover:bg-sky-600/30 hover:bg-sky-500 text-sky-800 dark:text-sky-500 hover:text-white dark:hover:text-clr-light duration-300">
+                      <LoadingSpinner size={1} />
+                    </button>
+                  ) : (
+                    <input
+                      type="submit"
+                      value="Reset Password"
+                      className="w-full cursor-pointer rounded-md px-5 py-3 text-base border-2 border-sky-600/50 shadow-lg bg-sky-400/30 dark:bg-transparent dark:hover:bg-sky-600/30 hover:bg-sky-500 text-sky-800 dark:text-sky-500 hover:text-white dark:hover:text-clr-light duration-300"
+                    />
+                  )}
                 </div>
               </form>
 
