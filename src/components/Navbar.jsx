@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { LiaAlignLeftSolid } from 'react-icons/lia';
+import { CiDark, CiLight } from 'react-icons/ci';
 import useAuth from '../hooks/useAuth';
-import { Tooltip } from 'react-tooltip';
 import { BtnNavLink, Button } from './ui/Button';
+import useTheme from '../hooks/useTheme';
+import { Tooltip } from 'react-tooltip';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   // const { user, logOut } = useAuth();
   const user = true;
 
@@ -45,7 +48,7 @@ const Navbar = () => {
               {/* user Pic */}
 
               {user && (
-                <div className="has-tooltip h-[42px] w-[42px] rounded-full border border-eminence-500">
+                <div className="h-[43px] w-[43px] rounded-full bg-sky-600/30">
                   <img
                     src={user.photoURL}
                     alt={user.displayName}
@@ -61,6 +64,18 @@ const Navbar = () => {
 
               {!user && <BtnNavLink to={'/auth/login'}>Register</BtnNavLink>}
               {!user && <BtnNavLink to={'/auth/register'}>Login</BtnNavLink>}
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-full hover:bg-sky-600/30"
+                data-tooltip-id="theme-toggler"
+                data-tooltip-content="Dark / Light">
+                {theme === 'light' ? (
+                  <CiDark className="text-2xl text-clr-darker" />
+                ) : (
+                  <CiLight className="text-2xl text-clr-light" />
+                )}
+                <Tooltip id="theme-toggler" />
+              </button>
             </ul>
           </div>
         </div>

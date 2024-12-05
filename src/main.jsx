@@ -4,11 +4,14 @@ import { RouterProvider } from 'react-router-dom';
 import routes from './routes/Routes';
 import UserAuthContextProvider from './context/UserAuthContext';
 import './styles/globalStyle.css';
+import ThemeProvider from './context/ThemeContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <UserAuthContextProvider>
-      <RouterProvider router={routes} />
-    </UserAuthContextProvider>
+    <ThemeProvider>
+      <UserAuthContextProvider>
+        <RouterProvider router={routes} />
+      </UserAuthContextProvider>
+    </ThemeProvider>
   </StrictMode>
 );
