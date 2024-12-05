@@ -7,7 +7,7 @@ module.exports = {
       screens: {
         xs: '340px',
         tab: '834px',
-        pc: '1320px',
+        pc: '1330px',
       },
       // Custom font family
       fontFamily: {

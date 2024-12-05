@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <nav className="dark:bg-clr-darker py-7 dark:border-b dark:border-b-sky-600/30">
-      <section className="max-width-wrapper relative flex items-center justify-between py-5 lg:py-0">
+      <section className="max-width-wrapper relative flex items-center justify-between py-5 xl:py-0">
         {/* Logo */}
         <Link to={'/'}>
           <h2 className="text-3xl font-bold font-playwrite">
@@ -27,16 +27,16 @@ const Navbar = () => {
         <div>
           <button
             onClick={() => setOpen(!open)}
-            className={`absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] lg:hidden border border-sky-600/30 shadow-lg`}>
+            className={`absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] xl:hidden border border-sky-600/30 shadow-lg`}>
             <LiaAlignLeftSolid className="text-4xl" />
           </button>
 
           <div
-            className={`absolute right-4 z-20 top-full w-full max-w-[250px] rounded-lg bg-clr-darker/90 border border-sky-600/30 lg:border-none lg:bg-transparent px-6 py-5 lg:px-0 lg:py-0 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none ${
+            className={`absolute right-4 z-20 top-full w-full max-w-[250px] rounded-lg bg-clr-darker/90 border border-sky-600/30 xl:border-none xl:bg-transparent px-6 py-5 xl:px-0 xl:py-0 shadow xl:static xl:block xl:w-full xl:max-w-full xl:shadow-none ${
               !open && 'hidden'
             } `}>
             {/* Links */}
-            <ul className="text-base font-medium flex flex-col lg:flex-row items-center justify-between gap-4">
+            <ul className="text-base font-medium flex flex-col xl:flex-row items-center justify-between gap-4">
               <NavLink to={'/'} className="">
                 Home
               </NavLink>
