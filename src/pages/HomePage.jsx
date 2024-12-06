@@ -1,3 +1,5 @@
+import CategoriesSection from '../components/CategoriesSection';
+import ProductSection from '../components/ProductSection';
 import Header from './../components/Header';
 
 const HomePage = () => {
@@ -5,7 +7,8 @@ const HomePage = () => {
     <>
       <Header />
       <main>
-        <h1>Welcome to the home page!</h1>
+        <ProductSection />
+        <CategoriesSection />
       </main>
     </>
   );

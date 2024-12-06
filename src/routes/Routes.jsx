@@ -20,6 +20,10 @@ const routes = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
+        loader: () =>
+          fetch(
+            'https://b10-a10-server-side-amirulkanak.vercel.app/equipment/all'
+          ).then((res) => res.json()),
       },
       {
         path: 'all-equipment',
