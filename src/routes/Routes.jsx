@@ -28,6 +28,10 @@ const routes = createBrowserRouter([
       {
         path: 'all-equipment',
         element: <AllEquipment />,
+        loader: () =>
+          fetch(
+            'https://b10-a10-server-side-amirulkanak.vercel.app/equipment/all'
+          ).then((res) => res.json()),
       },
       {
         path: 'add-equipment',

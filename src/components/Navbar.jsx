@@ -36,7 +36,7 @@ const Navbar = () => {
               !open && 'hidden'
             } `}>
             {/* Links */}
-            <ul className="text-base text-clr-light font-medium flex flex-col xl:flex-row items-center justify-between gap-4">
+            <ul className="text-base font-medium flex flex-col xl:flex-row items-center justify-between gap-4">
               <NavLink to={'/'} className="">
                 Home
               </NavLink>
