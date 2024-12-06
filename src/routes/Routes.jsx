@@ -10,6 +10,7 @@ import ForgetPasswordPage from '../pages/ForgetPasswordPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import PrivateRoute from './PrivateRoute';
+import EquipmentDetails from '../pages/EquipmentDetails';
 
 const routes = createBrowserRouter([
   {
@@ -48,6 +49,18 @@ const routes = createBrowserRouter([
             <MyEquipment />
           </PrivateRoute>
         ),
+      },
+      {
+        path: 'equipment/:id',
+        element: (
+          <PrivateRoute>
+            <EquipmentDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://b10-a10-server-side-amirulkanak.vercel.app/equipment/${params.id}`
+          ).then((res) => res.json()),
       },
     ],
   },

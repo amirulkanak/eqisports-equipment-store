@@ -71,7 +71,7 @@ const LoginPage = () => {
       });
   };
   return (
-    <section data-aos="fade-in" className="bg-gray-1 py-20 lg:py-[120px]">
+    <section data-aos="fade-in" className="py-20 lg:py-[120px]">
       <div className="max-width-wrapper">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">

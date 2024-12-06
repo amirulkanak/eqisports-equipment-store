@@ -22,7 +22,7 @@ const ProductCard = ({ cardData }) => {
         <div className="mt-4 flex items-center justify-between">
           <p className="text-xl font-semibold">${cardData.price}</p>
           <Link
-            to={`/service/${cardData._id}`}
+            to={`/equipment/${cardData._id}`}
             className="px-4 py-2 bg-sky-600/40 rounded hover:bg-sky-400 dark:hover:bg-sky-600 transition">
             View Details
           </Link>

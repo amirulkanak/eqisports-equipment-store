@@ -23,14 +23,14 @@ const ProductTable = ({ products }) => {
       {/* Sort button */}
       <button
         onClick={sortProducts}
-        className="bg-sky-900/40 rounded hover:bg-sky-400 dark:bg-sky-600 dark:hover:bg-sky-800 transition px-4 py-2 mb-4">
+        className="bg-sky-600/40 rounded hover:bg-sky-400 dark:bg-sky-800/40 dark:hover:bg-sky-800 transition px-4 py-2 mb-4">
         Sort by Price ({ascending ? 'Ascending' : 'Descending'})
       </button>
 
       {/* Table */}
       <table className="min-w-full bg-sky-100 dark:bg-clr-dark2 border border-sky-600/30 shadow-md rounded-lg overflow-x-auto">
         <thead>
-          <tr className="bg-sky-200 dark:bg-clr-darker">
+          <tr className="bg-sky-300/90 dark:bg-clr-darker">
             <th className="py-4 px-6 text-left">Name</th>
             <th className="py-4 px-6 text-left hidden md:table-cell">
               Category
@@ -55,10 +55,8 @@ const ProductTable = ({ products }) => {
               </td>
               <td className="py-4 px-6">
                 <Link
-                  className="px-4 py-2 bg-sky-900/40 rounded hover:bg-sky-400 dark:bg-sky-600 dark:hover:bg-sky-800 transition"
-                  onClick={() =>
-                    alert(`Viewing details of ${product.itemName}`)
-                  }>
+                  to={`/equipment/${product._id}`}
+                  className="px-4 py-2 bg-sky-600/40 rounded hover:bg-sky-400 dark:bg-sky-800/40 dark:hover:bg-sky-800 transition">
                   View Details
                 </Link>
               </td>

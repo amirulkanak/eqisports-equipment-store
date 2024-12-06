@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react';
 
 const ProductCardsContainer = () => {
   const { data: cardsData } = useLoaderData();
-  console.log(cardsData);
-
   const [randomCards, setRandomCards] = useState([]);
 
   // Get 6 random cards
