@@ -12,6 +12,7 @@ import RegisterPage from '../pages/RegisterPage';
 import PrivateRoute from './PrivateRoute';
 import EquipmentDetails from '../pages/EquipmentDetails';
 import MyEquipmentUpdate from '../pages/MyEquipmentUpdate';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const routes = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const routes = createBrowserRouter([
           fetch(
             'https://b10-a10-server-side-amirulkanak.vercel.app/equipment/all'
           ).then((res) => res.json()),
+        hydrateFallbackElement: (
+          <div className="min-h-screen flex items-center justify-center">
+            <LoadingSpinner size={5} />
+          </div>
+        ),
       },
       {
         path: 'all-equipment',
@@ -34,6 +40,11 @@ const routes = createBrowserRouter([
           fetch(
             'https://b10-a10-server-side-amirulkanak.vercel.app/equipment/all'
           ).then((res) => res.json()),
+        hydrateFallbackElement: (
+          <div className="min-h-screen flex items-center justify-center">
+            <LoadingSpinner size={5} />
+          </div>
+        ),
       },
       {
         path: 'add-equipment',
@@ -62,6 +73,11 @@ const routes = createBrowserRouter([
           fetch(
             `https://b10-a10-server-side-amirulkanak.vercel.app/equipment/${params.id}`
           ).then((res) => res.json()),
+        hydrateFallbackElement: (
+          <div className="min-h-screen flex items-center justify-center">
+            <LoadingSpinner size={5} />
+          </div>
+        ),
       },
       {
         path: 'equipment/update/:id',
@@ -74,6 +90,11 @@ const routes = createBrowserRouter([
           fetch(
             `https://b10-a10-server-side-amirulkanak.vercel.app/equipment/${params.id}`
           ).then((res) => res.json()),
+        hydrateFallbackElement: (
+          <div className="min-h-screen flex items-center justify-center">
+            <LoadingSpinner size={5} />
+          </div>
+        ),
       },
     ],
   },
