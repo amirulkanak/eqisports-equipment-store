@@ -29,7 +29,7 @@ const ProductCardsContainer = () => {
       ) : (
         <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center">
           {randomCards.map((card) => (
-            <ProductCard key={card.itemName} cardData={card} />
+            <ProductCard key={card._id} cardData={card} />
           ))}
         </div>
       )}
