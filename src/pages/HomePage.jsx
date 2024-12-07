@@ -1,5 +1,7 @@
 import CategoriesSection from '../components/CategoriesSection';
+import CtaSection from '../components/CtaSection';
 import ProductSection from '../components/ProductSection';
+import Testimonials from '../components/Testimonials';
 import Header from './../components/Header';
 
 const HomePage = () => {
@@ -10,6 +12,8 @@ const HomePage = () => {
       <main>
         <ProductSection />
         <CategoriesSection />
+        <Testimonials />
+        <CtaSection />
       </main>
     </>
   );
