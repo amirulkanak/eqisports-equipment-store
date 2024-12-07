@@ -4,7 +4,6 @@ import useAuth from '../hooks/useAuth';
 const AddEquipment = () => {
   document.title = 'Add Equipment | EquiSports';
   const { user } = useAuth();
-  console.log(user);
 
   return (
     <section data-aos="fade-in" className="max-width-wrapper my-20">

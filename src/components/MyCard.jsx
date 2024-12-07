@@ -42,7 +42,7 @@ const MyCard = ({ cardData, handleDelete }) => {
           <p className="text-xl font-semibold">${cardData.price}</p>
           <div className="space-x-3">
             <Link
-              to={`/equipment/${cardData._id}`}
+              to={`/equipment/update/${cardData._id}`}
               className="px-4 py-2 bg-sky-600/40 rounded hover:bg-sky-400 dark:hover:bg-sky-600 transition">
               Update
             </Link>

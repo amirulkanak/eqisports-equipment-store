@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import LoadingSpinner from './LoadingSpinner';
+import { useNavigate } from 'react-router-dom';
 
-const AddEquipmentForm = ({ userEmail, userName }) => {
+const UpdateEquipmentForm = ({ userEmail, userName, cardData }) => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    imageURL: '',
-    itemName: '',
-    categoryName: '',
-    description: '',
-    price: '',
-    rating: '',
-    customization: '',
-    processingTime: '',
-    stockStatus: '',
+    imageURL: cardData.imageURL,
+    itemName: cardData.itemName,
+    categoryName: cardData.categoryName,
+    description: cardData.description,
+    price: cardData.price,
+    rating: cardData.rating,
+    customization: cardData.customization.join(', '),
+    processingTime: cardData.processingTime,
+    stockStatus: cardData.stockStatus,
   });
 
   const handleChange = (e) => {
@@ -43,9 +45,9 @@ const AddEquipmentForm = ({ userEmail, userName }) => {
 
     // Send the final data to the server
     fetch(
-      'https://b10-a10-server-side-amirulkanak.vercel.app/equipment/create',
+      `https://b10-a10-server-side-amirulkanak.vercel.app/equipment/update/${cardData._id}`,
       {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -57,21 +59,14 @@ const AddEquipmentForm = ({ userEmail, userName }) => {
         if (data.success) {
           Swal.fire({
             title: 'Success!',
-            text: `${data.message}. Check your equipment in My Equipment.`,
+            text: `${data.message}. Check your updated equipment in My Equipment.`,
             icon: 'success',
             confirmButtonText: 'Ok',
-          });
-          setLoading(false);
-          setFormData({
-            imageURL: '',
-            itemName: '',
-            categoryName: '',
-            description: '',
-            price: '',
-            rating: '',
-            customization: '',
-            processingTime: '',
-            stockStatus: '',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              setLoading(false);
+              navigate('/my-equipment');
+            }
           });
         } else {
           setLoading(false);
@@ -242,7 +237,7 @@ const AddEquipmentForm = ({ userEmail, userName }) => {
             type="submit"
             disabled={loading}
             className="w-full bg-sky-600 text-sky-100 py-2 px-4 flex items-center justify-center rounded-md hover:bg-sky-700">
-            {loading ? <LoadingSpinner size={1} /> : `Add Equipment`}
+            {loading ? <LoadingSpinner size={1} /> : `Update Equipment`}
           </button>
         </div>
       </form>
@@ -250,4 +245,4 @@ const AddEquipmentForm = ({ userEmail, userName }) => {
   );
 };
 
-export default AddEquipmentForm;
+export default UpdateEquipmentForm;

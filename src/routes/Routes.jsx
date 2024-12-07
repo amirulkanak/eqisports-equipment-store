@@ -11,6 +11,7 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import PrivateRoute from './PrivateRoute';
 import EquipmentDetails from '../pages/EquipmentDetails';
+import MyEquipmentUpdate from '../pages/MyEquipmentUpdate';
 
 const routes = createBrowserRouter([
   {
@@ -55,6 +56,18 @@ const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <EquipmentDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://b10-a10-server-side-amirulkanak.vercel.app/equipment/${params.id}`
+          ).then((res) => res.json()),
+      },
+      {
+        path: 'equipment/update/:id',
+        element: (
+          <PrivateRoute>
+            <MyEquipmentUpdate />
           </PrivateRoute>
         ),
         loader: ({ params }) =>
