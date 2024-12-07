@@ -3,6 +3,7 @@ import useAuth from '../hooks/useAuth';
 import UpdateEquipmentForm from '../components/UpdateEquipmentForm';
 
 const MyEquipmentUpdate = () => {
+  document.title = 'Update Equipment | EquiSports';
   const { user } = useAuth();
   const { data: cardData } = useLoaderData();
   return (

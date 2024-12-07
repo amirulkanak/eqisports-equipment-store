@@ -2,8 +2,6 @@ import SwiperComponent from './swiperSlider/SwiperComponent';
 import { Fade } from 'react-awesome-reveal';
 
 const Header = () => {
-  document.title = 'Home | EquiSports';
-
   return (
     <header className="pb-16 mt-16">
       <section className="max-width-wrapper">

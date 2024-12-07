@@ -5,6 +5,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import Swal from 'sweetalert2';
 
 const MyEquipment = () => {
+  document.title = 'My Equipment | EquiSports';
   const { user } = useAuth();
   const [myProducts, setMyProducts] = useState([]);
   const [loading, setLoading] = useState(true);

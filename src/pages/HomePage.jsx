@@ -3,6 +3,7 @@ import ProductSection from '../components/ProductSection';
 import Header from './../components/Header';
 
 const HomePage = () => {
+  document.title = 'Home | EquiSports';
   return (
     <>
       <Header />
