@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const ProductTable = ({ products }) => {
+const ProductTable = ({ products, handleDelete }) => {
   const [sortedProducts, setSortedProducts] = useState(products);
   const [ascending, setAscending] = useState(true);
 
@@ -28,7 +28,7 @@ const ProductTable = ({ products }) => {
       </button>
 
       {/* Table */}
-      <table className="min-w-full bg-sky-100 dark:bg-clr-dark2 border border-sky-600/30 shadow-md rounded-lg overflow-x-auto">
+      <table className="bg-sky-100 dark:bg-clr-dark2 border border-sky-600/30 shadow-md rounded-lg overflow-x-auto w-full">
         <thead>
           <tr className="bg-sky-300/90 dark:bg-clr-darker">
             <th className="py-4 px-6 text-left">Name</th>
@@ -53,12 +53,22 @@ const ProductTable = ({ products }) => {
               <td className="py-4 px-6 hidden lg:table-cell">
                 {product.rating}
               </td>
-              <td className="py-4 px-6">
+              <td className="flex flex-col lg:flex-row items-center justify-start py-4 px-6 gap-2">
                 <Link
                   to={`/equipment/${product._id}`}
-                  className="px-4 py-2 bg-sky-600/40 rounded hover:bg-sky-400 dark:bg-sky-800/40 dark:hover:bg-sky-800 transition">
+                  className="px-4 py-2 text-center bg-sky-600/40 rounded hover:bg-sky-400 dark:bg-sky-800/40 dark:hover:bg-sky-800 transition">
                   View Details
                 </Link>
+                <Link
+                  to={`/equipment/update/${product._id}`}
+                  className="px-4 py-2 bg-sky-600/40 rounded hover:bg-sky-400 dark:hover:bg-sky-600 transition">
+                  Update
+                </Link>
+                <button
+                  onClick={() => handleDelete(product._id)}
+                  className="px-4 py-2 bg-rose-600/40 rounded hover:bg-rose-400 dark:hover:bg-rose-600 transition">
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

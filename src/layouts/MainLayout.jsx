@@ -16,15 +16,17 @@ const MainLayout = () => {
   }, [location]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
       {/* Navbar */}
       <Navbar />
-      {/* Dynamic children component from router */}
-      <Outlet />
+      <div className="flex flex-col min-h-screen">
+        {/* Dynamic children component from router */}
+        <Outlet />
 
-      {/* Footer */}
+        {/* Footer */}
+      </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

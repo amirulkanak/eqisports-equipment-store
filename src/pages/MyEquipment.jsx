@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import MyCard from '../components/MyCard';
 import useAuth from '../hooks/useAuth';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Swal from 'sweetalert2';
+import ProductTable from './../components/ProductTable/ProductTable';
 
 const MyEquipment = () => {
   document.title = 'My Equipment | EquiSports';
@@ -21,7 +21,7 @@ const MyEquipment = () => {
           setLoading(false);
         }
       });
-  }, [myProducts]);
+  }, [myProducts, user.email]);
 
   // delete equipment
   const handleDelete = (id) => {
@@ -75,15 +75,9 @@ const MyEquipment = () => {
           )}
         </div>
       ) : (
-        <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center">
-          {myProducts.map((card) => (
-            <MyCard
-              key={card.itemName}
-              cardData={card}
-              handleDelete={handleDelete}
-            />
-          ))}
-        </div>
+        <>
+          <ProductTable products={myProducts} handleDelete={handleDelete} />
+        </>
       )}
     </section>
   );

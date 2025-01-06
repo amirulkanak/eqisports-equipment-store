@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import LoadingSpinner from './LoadingSpinner';
+import { useNavigate } from 'react-router-dom';
 
 const AddEquipmentForm = ({ userEmail, userName }) => {
   const [loading, setLoading] = useState(false);
@@ -15,6 +16,7 @@ const AddEquipmentForm = ({ userEmail, userName }) => {
     processingTime: '',
     stockStatus: '',
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,21 +59,45 @@ const AddEquipmentForm = ({ userEmail, userName }) => {
         if (data.success) {
           Swal.fire({
             title: 'Success!',
-            text: `${data.message}. Check your equipment in My Equipment.`,
+            text: `Added! Do you want to add another equipment?`,
             icon: 'success',
-            confirmButtonText: 'Ok',
-          });
-          setLoading(false);
-          setFormData({
-            imageURL: '',
-            itemName: '',
-            categoryName: '',
-            description: '',
-            price: '',
-            rating: '',
-            customization: '',
-            processingTime: '',
-            stockStatus: '',
+            showCancelButton: false,
+            showCloseButton: false,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            showConfirmButton: true,
+            confirmButtonText: 'Add More',
+            showDenyButton: true,
+            denyButtonText: 'No',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              setLoading(false);
+              setFormData({
+                imageURL: '',
+                itemName: '',
+                categoryName: '',
+                description: '',
+                price: '',
+                rating: '',
+                customization: '',
+                processingTime: '',
+                stockStatus: '',
+              });
+            } else if (result.isDenied) {
+              setLoading(false);
+              setFormData({
+                imageURL: '',
+                itemName: '',
+                categoryName: '',
+                description: '',
+                price: '',
+                rating: '',
+                customization: '',
+                processingTime: '',
+                stockStatus: '',
+              });
+              navigate('/my-equipment');
+            }
           });
         } else {
           setLoading(false);
@@ -86,12 +112,10 @@ const AddEquipmentForm = ({ userEmail, userName }) => {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center mb-10">
       <form
         onSubmit={handleSubmit}
         className="bg-sky-600/30 dark:bg-clr-darker shadow-lg rounded-lg p-12 w-full max-w-5xl">
-        <h2 className="text-3xl font-bold mb-8">Add Equipment</h2>
-
         <div className="grid gap-4 md:grid-cols-2">
           <div>
             <label className="text-md font-medium">Image URL:</label>
