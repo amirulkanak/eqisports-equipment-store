@@ -32,7 +32,7 @@ const Navbar = () => {
     <nav
       className={`${
         scrolled
-          ? 'bg-slate-200/95 backdrop-blur-md transition-colors border-b border-slate-600/30'
+          ? 'bg-slate-200/95 backdrop-blur-md transition-colors border-b border-b-slate-600/30'
           : ''
       } sticky top-0 z-50 dark:bg-clr-darker py-7 dark:border-b dark:border-b-sky-600/30`}>
       <section className="max-width-wrapper relative flex items-center justify-between py-5 xl:py-0">

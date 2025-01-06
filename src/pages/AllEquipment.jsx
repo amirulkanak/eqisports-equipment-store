@@ -1,16 +1,19 @@
-import { useLoaderData } from 'react-router-dom';
-import ProductTable from '../components/ProductTable/ProductTable';
+import AllProductCardsContainer from '../components/AllProductCards/AllProductCardsContainer';
 
 const AllEquipment = () => {
   document.title = 'All Equipment | EquiSports';
-  const { data: products } = useLoaderData();
+  window.scrollTo(0, 0);
   return (
-    <div data-aos="fade-in" className="max-width-wrapper mb-20">
-      <h2 className="text-3xl font-semibold mt-20 text-center">
-        All Equipment List
-      </h2>
-      <ProductTable products={products} />
-    </div>
+    <section className="max-width-wrapper mb-20">
+      <div data-aos="fade-in" className="mb-12">
+        <h2 className="text-3xl font-semibold mt-20 text-center">
+          All Equipment List
+        </h2>
+      </div>
+
+      {/* Product Cards */}
+      <AllProductCardsContainer />
+    </section>
   );
 };
 

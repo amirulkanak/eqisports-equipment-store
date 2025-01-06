@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 
-const ProductCard = ({ cardData }) => {
+const AllProductCard = ({ cardData }) => {
   return (
-    <div className="max-w-sm w-full bg-sky-100 dark:bg-clr-dark2 dark:border-b dark:border-b-sky-600/40  shadow-lg rounded-lg overflow-hidden">
+    <div
+      data-aos="fade-up"
+      className="max-w-sm w-full bg-sky-100 dark:bg-clr-dark2 dark:border-b dark:border-b-sky-600/40 shadow-lg rounded-lg overflow-hidden">
       <img
         src={cardData.imageURL}
         alt={cardData.itemName}
@@ -32,4 +34,4 @@ const ProductCard = ({ cardData }) => {
   );
 };
 
-export default ProductCard;
+export default AllProductCard;

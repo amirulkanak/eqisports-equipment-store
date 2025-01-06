@@ -21,7 +21,7 @@ const ProductCardsContainer = () => {
   }, [cardsData]);
 
   return (
-    <div data-aos="fade-in" delay="500" className="max-width-wrapper">
+    <div data-aos="fade-in" className="max-width-wrapper">
       {randomCards.length === 0 ? (
         <div className="flex items-center justify-center">
           <LoadingSpinner size={3} />
