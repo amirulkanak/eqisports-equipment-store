@@ -6,7 +6,7 @@ const Header = () => {
     <header className="pb-16 mt-16">
       <section className="max-width-wrapper">
         <div className="flex flex-col items-center space-y-8">
-          <h1 className="text-center text-6xl sm:text-[4.5rem] leading-[5rem] font-bold">
+          <h1 className="text-center text-2xl sm:text-4xl sm:leading-[3.5rem] lg:text-[4.5rem] lg:leading-[5rem] font-bold">
             <Fade delay={1e3} cascade damping={1e-1}>
               Gear Up for Victory with
             </Fade>
