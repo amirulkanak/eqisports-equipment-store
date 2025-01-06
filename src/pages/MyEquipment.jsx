@@ -18,11 +18,8 @@ const MyEquipment = () => {
       .then((res) => res.json())
       .then((data) => {
         setMyProducts(data.data);
-        if (data.data.length === 0) {
-          setLoading(false);
-        }
+        setLoading(false);
       });
-    console.log('k');
   }, [user.email]);
 
   // delete equipment
@@ -37,6 +34,7 @@ const MyEquipment = () => {
       confirmButtonText: 'Confirm',
     }).then((result) => {
       if (result.isConfirmed) {
+        setLoading(true);
         fetch(
           `https://b10-a10-server-side-amirulkanak.vercel.app/equipment/delete/${id}`,
           {
@@ -51,12 +49,12 @@ const MyEquipment = () => {
                 text: `${data.message}`,
                 icon: 'success',
               });
-
               // filter out the deleted item
               const newProducts = myProducts.filter(
                 (product) => product._id !== id
               );
               setMyProducts(newProducts);
+              setLoading(false);
             }
           });
       }
@@ -68,18 +66,19 @@ const MyEquipment = () => {
       <h2 className="text-3xl font-semibold mb-10 text-center">
         My Equipment List
       </h2>
-      {myProducts.length === 0 ? (
+      {loading && (
         <div className="flex items-center justify-center">
-          {loading ? (
-            <LoadingSpinner size={3} />
-          ) : (
-            ' Your List is empty. Please add some equipment'
-          )}
+          <LoadingSpinner size={3} />
         </div>
-      ) : (
-        <>
-          <ProductTable products={myProducts} handleDelete={handleDelete} />
-        </>
+      )}
+      {!loading && myProducts.length === 0 && (
+        <div className="flex items-center justify-center">
+          Your List is empty. Please add some equipment
+        </div>
+      )}
+
+      {!loading && myProducts.length > 0 && (
+        <ProductTable products={myProducts} handleDelete={handleDelete} />
       )}
     </section>
   );

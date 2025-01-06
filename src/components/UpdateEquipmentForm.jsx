@@ -62,12 +62,9 @@ const UpdateEquipmentForm = ({ userEmail, userName, cardData }) => {
             text: `${data.message}. Check your updated equipment in My Equipment.`,
             icon: 'success',
             confirmButtonText: 'Ok',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              setLoading(false);
-              navigate('/my-equipment');
-            }
           });
+          setLoading(false);
+          navigate('/my-equipment');
         } else {
           setLoading(false);
           Swal.fire({
