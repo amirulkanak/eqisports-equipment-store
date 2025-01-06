@@ -8,7 +8,7 @@ import { GiHockey, GiTennisRacket } from 'react-icons/gi';
 
 const CategoriesSection = () => {
   return (
-    <section data-aos="fade-up" className="max-width-wrapper mt-20">
+    <section data-aos="fade-up" className="max-width-wrapper mt-12 lg:mt-28">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold">Trending Categories</h2>
         <p className="m-4">

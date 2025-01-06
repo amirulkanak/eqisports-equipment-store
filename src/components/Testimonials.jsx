@@ -1,6 +1,6 @@
 const Testimonials = () => {
   return (
-    <section className="bg-gray-50/50 dark:bg-gray-900 py-12 my-20">
+    <section className="bg-gray-50/50 dark:bg-gray-900 py-12 mt-20 lg:mt-28">
       <div className="max-width-wrapper px-6">
         <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 md:text-4xl">
           Trusted by Thousands of Athletes
