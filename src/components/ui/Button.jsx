@@ -20,10 +20,11 @@ export const BtnLink = ({ children, to }) => {
   );
 };
 
-export const BtnNavLink = ({ children, to }) => {
+export const BtnNavLink = ({ children, to, onClick }) => {
   return (
     <NavLink
       to={to}
+      onClick={onClick}
       className="bg-transparent items-center justify-center flex border-2 border-sky-600 shadow-lg hover:bg-sky-500 text-sky-800 dark:text-sky-500 dark:hover:text-clr-light hover:text-white duration-300 cursor-pointer active:scale-[0.98]">
       <button className="px-5 py-2">{children}</button>
     </NavLink>

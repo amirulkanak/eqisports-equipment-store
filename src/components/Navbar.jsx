@@ -93,10 +93,27 @@ const Navbar = () => {
                 </div>
               )}
 
-              {user && <Button onClick={logOut}>Logout</Button>}
+              {user && (
+                <Button
+                  onClick={() => {
+                    logOut(), setOpen(false);
+                  }}>
+                  Logout
+                </Button>
+              )}
 
-              {!user && <BtnNavLink to={'/auth/register'}>Register</BtnNavLink>}
-              {!user && <BtnNavLink to={'/auth/login'}>Login</BtnNavLink>}
+              {!user && (
+                <BtnNavLink
+                  to={'/auth/register'}
+                  onClick={() => setOpen(false)}>
+                  Register
+                </BtnNavLink>
+              )}
+              {!user && (
+                <BtnNavLink to={'/auth/login'} onClick={() => setOpen(false)}>
+                  Login
+                </BtnNavLink>
+              )}
               <button
                 onClick={() => {
                   toggleTheme(), setOpen(false);
