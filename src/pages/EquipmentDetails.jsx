@@ -3,6 +3,7 @@ import { ProductDetailsCard } from '../components/ProductDetailsCard/ProductDeta
 
 const EquipmentDetails = () => {
   document.title = 'Equipment Details | EquiSports';
+  window.scrollTo(0, 0);
   const { data: product } = useLoaderData();
 
   return (

@@ -10,6 +10,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 const RegisterPage = () => {
   document.title = 'Sign Up | EquiSports';
+  window.scrollTo(0, 0);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [gloading, setGLoading] = useState(false);

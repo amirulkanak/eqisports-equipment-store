@@ -7,6 +7,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 const ForgetPasswordPage = () => {
   document.title = 'Forget Password | EquiSports';
+  window.scrollTo(0, 0);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { sendPasswordResetEmailToUser, forgotEmail, setForgotEmail } =
@@ -97,7 +98,7 @@ const ForgetPasswordPage = () => {
               <div className="my-6 text-base h-[1px] bg-sky-600/30"></div>
 
               <p className="text-base">
-                <span className="pr-0.5">Don't have an account? </span>
+                <span className="pr-0.5">Don&apos;t have an account? </span>
                 <Link
                   to={'/auth/register'}
                   className="hover:underline text-sky-600">

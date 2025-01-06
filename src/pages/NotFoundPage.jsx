@@ -3,6 +3,7 @@ import { BtnLink } from '../components/ui/Button';
 
 const NotFoundPage = () => {
   document.title = '404 | EquiSports';
+  window.scrollTo(0, 0);
   return (
     <section className="max-width-wrapper">
       <div className="flex flex-col gap-6 items-center justify-center h-screen">

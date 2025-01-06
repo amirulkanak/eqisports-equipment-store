@@ -6,6 +6,7 @@ import ProductTable from './../components/ProductTable/ProductTable';
 
 const MyEquipment = () => {
   document.title = 'My Equipment | EquiSports';
+  window.scrollTo(0, 0);
   const { user } = useAuth();
   const [myProducts, setMyProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +22,8 @@ const MyEquipment = () => {
           setLoading(false);
         }
       });
-  }, [myProducts, user.email]);
+    console.log('k');
+  }, [user.email]);
 
   // delete equipment
   const handleDelete = (id) => {

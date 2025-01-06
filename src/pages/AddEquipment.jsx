@@ -3,6 +3,7 @@ import useAuth from '../hooks/useAuth';
 
 const AddEquipment = () => {
   document.title = 'Add Equipment | EquiSports';
+  window.scrollTo(0, 0);
   const { user } = useAuth();
 
   return (

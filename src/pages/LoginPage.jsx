@@ -123,7 +123,7 @@ const LoginPage = () => {
               <div className="my-6 text-base h-[1px] bg-eminence-600/30"></div>
 
               <p className="text-base">
-                <span className="pr-0.5">Don't have an account? </span>
+                <span className="pr-0.5">Don&apos;t have an account? </span>
                 <Link
                   to={'/auth/register'}
                   className="hover:underline text-sky-600">
